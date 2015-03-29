@@ -7,7 +7,7 @@
     "start": "node ./bin/www",
     "test": "set NODE_ENV=test && mocha test.js",
     "livestart": "nodemon --exec node-theseus ./bin/www",
-    "livetest": "set NODE_ENV=test && mocha -w app.js test.js"
+    "livetest": "set NODE_ENV=test && mocha -w app.js tests/**/*.js"
   },
   "author": "dimitrk",
   "license": "none",
@@ -20,8 +20,10 @@
     "grunt-bg-shell": "^2.3.1",
     "grunt-deployments": "^0.2.0",
     "lodash": "^3.3.0",
+    "mongoose": "^3.8.25",
     "request": "^2.53.0",
-    "winston": "^0.9.0"
+    "winston": "^0.9.0",
+    "ws": "^0.7.1"
   },
   "devDependencies": {
     "mocha": "^2.2.1",

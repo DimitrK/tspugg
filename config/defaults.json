@@ -1,35 +1,28 @@
 {
     "development": {
         "username": "root",
-        "password": "root",
         "database": "swap_dev",
         "host": "127.0.0.1",
-        "dialect": "mysql",
-        "port": 3306,
-        "apn_cert": "./../certs/cert-dev.pem"
+        "port": 27017,
+        "dialect": "mongo"
     },
     "test": {
-        "username": "root",
-        "password": null,
+        "username": "roottest",
         "database": "swap_test",
         "host": "127.0.0.1",
-        "dialect": "mysql",
-        "port": 3306,
-        "apn_cert": "./../certs/cert-dev.pem"
+        "port": 27017,
+        "dialect": "mongo"
     },
     "production": {
         "username": "root",
-        "password": null,
+        "password": "pass_prod",
         "database": "swap_prod",
         "host": "127.0.0.1",
-        "dialect": "mysql",
-        "port": 3306,
-        "apn_cert": "./../certs/cert-prod.pem"
+        "port": 27017,
+        "dialect": "mongo"
     },
-    "apn_key": "./../certs/key.pem",
     "fb_token": "232463640144163|tfRQnBKOFzDFZ9KGj3O_jG828zo",
     "log_folder": "logs",
     "http_port": 3000,
-    "ws_port": 5605,
     "environment": "development"
 }

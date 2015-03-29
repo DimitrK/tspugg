@@ -1,9 +1,10 @@
 var winston = require('winston');
 var path = require('path');
-var config = require('./config/config.json');
-var environment = process.env.NODE_ENV || config.environment;
+var config = require('./config/config');
+var environment = config.environment;
 var fileLoglevel = ~environment.indexOf('test') ? 'never' : ~environment.indexOf('development') ? 'debug' : 'info';
 var consoleLogLevel = ~environment.indexOf('test') ? 'never' : 'info';
+var logger;
 
 winston.setLevels({
     debug: 0,
@@ -18,31 +19,28 @@ winston.addColors({
     warn: 'yellow',
     error: 'red'
 });
-try {
-    winston.remove(winston.transports.Console);
-}catch(e){
 
+if( winston.transports.length !== 2 ) {
+
+    logger = new(winston.Logger)({
+        transports: [
+            new(winston.transports.Console)({
+                level: consoleLogLevel,
+                handleExceptions: true,
+                prettyPrint: true,
+                silent: false,
+                timestamp: true,
+                colorize: true
+            }),
+          new(winston.transports.DailyRotateFile)({
+                level: fileLoglevel,
+                name: 'log#debug',
+                handleExceptions: true,
+                filename: path.join(__dirname, config.log_folder, "log_file.log")
+            })
+        ]
+    });
 }
 
-var logger = new(winston.Logger)({
-    transports: [
-        new(winston.transports.Console)({
-            level: consoleLogLevel,
-            handleExceptions: true,
-            prettyPrint: true,
-            silent: false,
-            timestamp: true,
-            colorize: true
-        }),
-      new(winston.transports.DailyRotateFile)({
-            level: fileLoglevel,
-            name: 'log#debug',
-            handleExceptions: true,
-            filename: path.join(__dirname, config.log_folder, "log_file.log")
-        })
-    ]
-});
 
-logger.warn(consoleLogLevel);
-logger.warn();
-module.exports = logger;
+module.exports = logger || winston;

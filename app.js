@@ -1,16 +1,28 @@
-var express = require('express');
-var config = require('./config/config.json');
+var config = require('./config/config');
 var logger = require('./log');
+
+var WebSocketServer = require('ws').Server;
+
+/* Express app and routes*/
+var express = require('express');
+var app = express();
+var users = require('./routes/users');
+
+/* Express middlewares */
 var bodyParser = require('body-parser');
 var domainMiddleware  = require('express-domain-middleware');
-var users = require('./routes/users');
-var app = express();
 var logMiddlewares = require('./middlewares/logging');
 
 
-app.set('port', process.env.PORT || config.http_port || 3000);
+var mongoose = require("./utils/mongoose-bluebird");
+mongoose.connect(config.db.uri);
+mongoose.connection.on('error', logger.error.bind(logger, 'connection error:'));
+mongoose.connection.once('open', logger.info.bind(logger, 'Succesfully connected to db.'));
+
+app.set('db', mongoose.connection);
 app.set('config', config);
 app.set('logger', logger);
+app.set('wss', WebSocketServer);
 
 // Middlewares
 app.use(domainMiddleware);

@@ -1,5 +1,32 @@
 #!/usr/bin/env node
+var http = require('http');
+
 var app = require('./../app');
-app.listen(app.get('port'), function(){
-    app.get('logger').info('Server started on port %d', app.get('port'));
+var server = http.createServer(app);
+var WebSocketServer = app.get('wss');
+
+var logger = app.get('logger');
+
+
+server.listen(app.get('config').http_port, function(){
+    logger.info('Server started on port %d', app.get('config').http_port);
 });
+var ws = new WebSocketServer({server: server});
+
+ws.on('open', function wsOpen(){
+    logger.info('Socket oppened');
+});
+
+ws.on("connection", function(socket) {
+    logger.info('Client connected to Web Socket server');
+    
+    socket.on('message', function wsMessage(message){
+        logger.info('Web Socket server received a message: ' + message);
+    });
+});
+
+ws.on('close', function wsDisconnected(){
+    logger.info('Web Socket server disconnected');
+});
+
+app.set('ws', ws);

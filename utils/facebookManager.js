@@ -1,29 +1,31 @@
 var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 var url = require('url');
-var config = require('../config/config.json');
+var config = require('../config/config');
+var logger = require('../log');
 
 function makeRequest(urlOptions) {
     return request(url.format(urlOptions))
         .catch(Promise.TimeoutError, function (e) {
-//            app.get("logger").error(module.filename + '::Connection Timed out for FB Graph API: ' + e);
+            
+//        logger.error(module.filename + '::Connection Timed out for FB Graph API: ' + e);
             throw e;
         })
-        .then(function (response) {
-//            logger.info(module.filename + '::Fb graph API reached. ' + body);
-            var fbError = (response && 'data' in response && typeof response.data.error !== 'undefined') ? response.data.error : undefined;
-
+        .spread(function (response, body) {
+            body = JSON.parse(body);
+            var fbError = (body && body.hasOwnProperty('data') && typeof body.data.error !== 'undefined') ? body.data.error : undefined;
+        
             if (!fbError && response.statusCode == 200) {
-//                logger.info(module.filename + '::Successfully made request:');
-//                logger.info(module.filename + '::Response:' + JSON.stringify(body));
+                logger.info(module.filename + '::Successfully made request:');
+                logger.info(module.filename + '::Response:' + JSON.stringify(response.body));
             }
             if (response.statusCode != 200) {
-//                logger.error(module.filename + '::Bad status code from FB Graph api:' + response.statusCode);
-//                logger.error(module.filename + '::Status text from FB Graph api:' + response.statusText);
+                logger.error(module.filename + '::Bad status code from FB Graph api:' + response.statusCode);
+                logger.error(module.filename + '::Status text from FB Graph api:' + response.statusMessage);
             }
             if (fbError) {
-//                logger.error(module.filename + '::Error reaching FB Graph api for token: ' + urlOptions.query.access_token);
-//                logger.error(module.filename + '::Error:' + err);
+                logger.error(module.filename + '::Error reaching FB Graph api for token: ' + urlOptions.query.access_token);
+                logger.error(module.filename + '::Error:' + JSON.stringify(fbError));
             }
             return response;
         });
