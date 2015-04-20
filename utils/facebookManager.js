@@ -7,8 +7,7 @@ var logger = require('../log');
 function makeRequest(urlOptions) {
     return request(url.format(urlOptions))
         .catch(Promise.TimeoutError, function (e) {
-            
-//        logger.error(module.filename + '::Connection Timed out for FB Graph API: ' + e);
+            logger.error(module.filename + '::Connection Timed out for FB Graph API: ' + e);
             throw e;
         })
         .spread(function (response, body) {

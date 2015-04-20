@@ -1,6 +1,5 @@
 (function (app, window) {
-    "use strict";
-
+    
     if (!app) {
         throw "App not initialized yet";
     }
@@ -51,7 +50,7 @@
 
         // Only named functions can be removed later on.
         this.on = function (eventname, callback, context) {
-            var filterCalbackNotExistsAlready = function (existingcallback, index) {
+            var filterCalbackNotExistsAlready = function (existingcallback) {
                 return existingcallback.toString() !== callback.toString();
             };
             events[eventname] = events[eventname] || [];

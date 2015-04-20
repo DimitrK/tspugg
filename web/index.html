@@ -1,14 +1,55 @@
 <html>
-<head></head>
+    <head>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+    </head>
     <body>
+        
+        
+        
+        <a id="test" href="#">test</a>
+        <script id="expand-menu" type="text/html-fragment">
+            <nav id="menu" class="menu">
+                <span class="svg-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 500 500" enable-background="new 0 0 500 500" space="preserve">
+                        <path d="M256,50C142.229,50,50,142.229,50,256c0,113.771,92.229,206,206,206  c113.771,0,206-92.229,206-206C462,142.229,369.771,50,256,50z M371.3,342.625H144.7v-35.75h226.6V342.625z M371.3,273.875H144.7  v-35.75h226.6V273.875z M371.3,205.125H144.7v-35.75h226.6V205.125z">
+                        </path>
+                    </svg>
+                </span>
+                <ul class="menu__items">
+                    <li><a href="#"><i class="fa fa-fw fa-heart"></i><span>Like</span></a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-comment"></i><span>Comment</span></a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-eye"></i><span>Hide</span></a></li>
+                </ul>
+            </nav>
+        </script>
+        <script src="js/lib/es5-shim.js"></script>
+        <script src="js/lib/jquery-2.1.3.min.js"></script>
+        <script src="js/app/app.js"></script>
+        <script src="js/app/core/utils.js"></script>
+        <script src="js/app/core/module.js"></script>
+        <script src="js/app/core/UIModule.js"></script>
+        <script src="js/app/ui/expandMenu.js"></script>
+        <script src="js/app/mixins.js"></script>
+        <script src="js/app/webScoket.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                app.init();
+                var menu = new app.UI.ExpandMenu()
+                menu.render();
+                
+//                $('#test').on('click', function test(e){
+//                    e.preventDefault();
+//                    e.stopPropagation();
+//                    console.time('module_test');
+//                    var mod
+//                    for( var i = 0; i < 10000; i++ ) {
+//                        mod = new app.Core.UIModule();
+//                    }
+//                    console.timeEnd('module_test');
+//                });
+            });
+        </script>
     </body>
-    <script src="js/lib/jquery-2.1.3.min.js"></script>
-    <script src="js/app/app.js"></script>
-    <script src="js/app/mixins.js"></script>
-    <script src="js/app/webScoket.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            app.init();
-        });
-    </script>
 </html>

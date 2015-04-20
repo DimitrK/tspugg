@@ -1,6 +1,5 @@
 (function (app, window) {
-    "use strict";
-    
+        
     if(!app){ 
         throw "App not initialized";
     }

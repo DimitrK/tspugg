@@ -38,4 +38,4 @@ ideaSchema.post('save', function (doc) {
 
 var Idea = mongoose.model('Idea', ideaSchema);
 
-module.exports = Idea
+module.exports = Idea;

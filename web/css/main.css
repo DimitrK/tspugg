@@ -1,0 +1,7 @@
+body {
+    font-size: 71.5%;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}

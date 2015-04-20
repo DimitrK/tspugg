@@ -1,9 +1,24 @@
-(function(window){
-    "use strict";
-    var app = window.app = {};
+/*globals window, define*/
+
+(function (window, App) {
     
-    app.init = function(){
-        var ws = app.webSocket.new('/');
+    //Lets Set Up the enviroment and check for compatibility.
+    window = window || this;
+
+    var app = new App();
+    
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(app);
+    } else {
+        window.app = app;
+    }
+
+
+})(window, function () {
+    this.init = function () {
+        //        var ws = app.webSocket.new('/');
     };
-    
-})(this);
+
+    return this;
+});
