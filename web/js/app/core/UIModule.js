@@ -119,7 +119,7 @@
         /**
          * Analyses the composite event string and decides which binding strategy to follow.
          * Analysis is based on wether a selector is passed (event propagation based binding)
-         * or not (direct event binding).
+         * where ` on ` term should be present, or not (direct event binding).
          *
          * @private
          * @param {String} selectorWithEventsString A string in format `.selector on event`

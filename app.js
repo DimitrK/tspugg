@@ -1,7 +1,7 @@
 var config = require('./config/config');
 var logger = require('./log');
 
-var WebSocketServer = require('ws').Server;
+var http = require('http');
 
 /* Express app and routes*/
 var express = require('express');
@@ -22,7 +22,7 @@ mongoose.connection.once('open', logger.info.bind(logger, 'Succesfully connected
 app.set('db', mongoose.connection);
 app.set('config', config);
 app.set('logger', logger);
-app.set('wss', WebSocketServer);
+app.set('server', http.createServer(app));
 
 // Middlewares
 app.use(domainMiddleware);

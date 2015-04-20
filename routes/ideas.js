@@ -1,7 +1,10 @@
-var express = require('express');
-var Idea = require('./../models/idea');
-var router = express.Router();
+var app = require('../app');
+var WebSocketServer = require('ws').Server;
 
+var Idea = require('./../models/idea');
+
+var express = require('express');
+var router = express.Router();
 
 router.get('/', function (request, response) {
     var logger = request.app.get('logger');
@@ -52,5 +55,8 @@ router.post('/', function (request, response) {
         });
     
 });
+
+var ws = new WebSocketServer({server: app.get('server'), path: '/ideas'});
+
 
 module.exports = router;

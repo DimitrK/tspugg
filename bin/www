@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-var http = require('http');
-
 var app = require('./../app');
-var server = http.createServer(app);
-var WebSocketServer = app.get('wss');
+var server = app.get('server')
+var WebSocketServer = require('ws').Server;
 
 var logger = app.get('logger');
 
@@ -28,5 +26,3 @@ ws.on("connection", function(socket) {
 ws.on('close', function wsDisconnected(){
     logger.info('Web Socket server disconnected');
 });
-
-app.set('ws', ws);
