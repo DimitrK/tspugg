@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Jasmine Spec Runner v2.2.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.2.0/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-2.2.0/jasmine.css">
+
+  <script type="text/javascript" src="lib/jasmine-2.2.0/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-2.2.0/jasmine-html.js"></script>
+  <script type="text/javascript" src="lib/jasmine-2.2.0/jasmine-console.js"></script>
+  <script type="text/javascript" src="lib/jasmine-2.2.0/boot.js"></script>
+  
+  <!-- application (debug) -->
+  <script type="text/javascript" src="../js/lib/es5-shim.js"></script>
+  <script type="text/javascript" src="../js/lib/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="../js/app/app.js" data-cover></script>
+  <script type="text/javascript" src="../js/app/core/utils.js" data-cover></script>
+  <script type="text/javascript" src="../js/app/core/module.js" data-cover></script>
+  <script type="text/javascript" src="../js/app/core/UIModule.js" data-cover></script>
+  
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="./spec/app.spec.js"></script>
+  <script type="text/javascript" src="./spec/core/utils.spec.js"></script>
+  <script type="text/javascript" src="./spec/core/module.spec.js"></script>
+  <script type="text/javascript" src="./spec/core/uimodule.spec.js"></script>
+  
+  <script type="text/javascript">
+//    var consoleReporter = new jasmineRequire.ConsoleReporter()({
+//      showColors: true,
+//      timer: new jasmine.Timer,
+//      print: function() {
+//        console.log.apply(console, arguments)
+//      }
+//    });
+//
+//    jasmine.getEnv().addReporter(consoleReporter);
+  </script>
+  <style type="text/css">
+  .app-spec {
+    position: absolute;
+    left: -9999px;!important
+  }
+  </style>
+</head>
+
+<body>
+  <div class="app-spec"> </div>
+</body>
+</html>

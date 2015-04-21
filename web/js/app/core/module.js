@@ -1,14 +1,14 @@
-/** @module app.Core.Module */
+/** @module app.core.Module */
 function __Module__() {}
 
 
 /**
- * Module lifecycle . Create method will be triggered after initialization.
+ * Module lifecycle . Construct method will be triggered after initialization.
  * Any submodule can override it to handle individual initialization logic
  * preferably after calling `super` so it will propagate the initialization 
  * in parent modules first.
  */
-__Module__.prototype.create = function () {};
+__Module__.prototype.construct = function () {};
 
 /**
  * Extend method provides inheritance ability
@@ -16,7 +16,6 @@ __Module__.prototype.create = function () {};
  * @returns {Function} The submodule constructor function
  */
 __Module__.extend = function (obj) {
-    obj = obj || {};
     var objType = Object.prototype.toString.call(obj);
     if (objType !== '[object Object]') {
         throw '`extend` accepts object as parameter. ' + objType + ' was given.';
@@ -24,7 +23,7 @@ __Module__.extend = function (obj) {
 
     var Module = function () {
         if (arguments[0] !== __Module__) {
-            this.create.apply(this, arguments);
+            this.construct.apply(this, arguments);
         }
     };
 
@@ -75,4 +74,4 @@ Object.defineProperty(__Module__.prototype, "super", {
     }
 });
 
-app._.setToPath('app.Core.Module', __Module__);
+app._.setToPath('app.core.Module', __Module__);

@@ -1,5 +1,5 @@
 (function (app, window) {
-    
+
     if (!app) {
         throw "App not initialized yet";
     }
@@ -66,20 +66,24 @@
         this['do'] = function (eventname) {
             var args = Array.prototype.slice.apply(arguments);
             args.shift(); // remove the eventname
-            events[eventname] && events[eventname].forEach(function (fn) {
-                if (fn) {
-                    return fn.apply(fn, args);
-                }
-            });
+            if (events[eventname]) {
+                events[eventname].forEach(function (fn) {
+                    if (fn) {
+                        return fn.apply(fn, args);
+                    }
+                });
+            }
         };
 
         this.off = function (eventname, fn) {
             if (fn) {
-                events[eventname] && events[eventname].forEach(function (callback, index, arr) {
-                    if (callback.constructor === fn) {
-                        arr.splice(index, 1);
-                    }
-                });
+                if (events[eventname]) {
+                    events[eventname].forEach(function (callback, index, arr) {
+                        if (callback.constructor === fn) {
+                            arr.splice(index, 1);
+                        }
+                    });
+                }
             } else {
                 events[eventname] = [];
             }

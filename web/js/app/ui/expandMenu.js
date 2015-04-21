@@ -1,5 +1,5 @@
  (function() {
-    app.Core.UIModule.extend({
+    app.core.UIModule.extend({
         name: 'app.UI.ExpandMenu',
         htmlFragment: '#expand-menu',
         isOpen: false,

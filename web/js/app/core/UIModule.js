@@ -2,8 +2,8 @@
 
 /** @class */
 (function () {
-    app.Core.Module.extend({
-        name: 'app.Core.UIModule',
+    app.core.Module.extend({
+        name: 'app.core.UIModule',
 
         /**
          *   @member {Object} The default options

@@ -1,3 +1,7 @@
+/**
+* TODO: Has to change in accordance with the Module pattern employed to the rest of the app.
+* Maybe submodule of a NetworkSource Module with corresponding Ajax implementation as well.
+*/
 (function (app, window) {
         
     if(!app){ 
