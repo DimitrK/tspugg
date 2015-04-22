@@ -52,10 +52,6 @@
          */
         events: {},
         
-        construct: function(){
-            this.super.apply(this, arguments);
-        },
-
         /**
          * Constructor function for UIModule. It accepts as parameter an object with all declared options.
          * It then defines the `html` property if not defined using the `tag` property.
@@ -65,7 +61,7 @@
          *                              module and does not require any specific options other than `target`
          *                              which is used to render the `$el` to the defined target, `events` and .
          */
-        create: function (options) {
+        construct: function (options) {
             this.super.call(this, arguments);
             options = options || {};
             if (!app._.isObject(options)) {
